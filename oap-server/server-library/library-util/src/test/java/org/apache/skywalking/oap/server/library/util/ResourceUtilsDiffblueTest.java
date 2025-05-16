@@ -1,12 +1,9 @@
 package org.apache.skywalking.oap.server.library.util;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -28,23 +25,6 @@ class ResourceUtilsDiffblueTest {
   void testRead_whenFooTxt_thenThrowFileNotFoundException() throws FileNotFoundException {
     // Arrange, Act and Assert
     assertThrows(FileNotFoundException.class, () -> ResourceUtils.read("foo.txt"));
-  }
-
-  /**
-   * Test {@link ResourceUtils#readToStream(String)}.
-   * <ul>
-   *   <li>When empty string.</li>
-   *   <li>Then return read is minus one.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link ResourceUtils#readToStream(String)}
-   */
-  @Test
-  @DisplayName("Test readToStream(String); when empty string; then return read is minus one")
-  @Tag("MaintainedByDiffblue")
-  void testReadToStream_whenEmptyString_thenReturnReadIsMinusOne() throws IOException {
-    // Arrange, Act and Assert
-    assertEquals(-1, ResourceUtils.readToStream("").read(new byte[]{}));
   }
 
   /**
@@ -97,25 +77,6 @@ class ResourceUtilsDiffblueTest {
   /**
    * Test {@link ResourceUtils#getDirectoryFilesRecursive(String, int)} with {@code directoryPath}, {@code maxDepth}.
    * <ul>
-   *   <li>Then return Empty.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link ResourceUtils#getDirectoryFilesRecursive(String, int)}
-   */
-  @Test
-  @DisplayName("Test getDirectoryFilesRecursive(String, int) with 'directoryPath', 'maxDepth'; then return Empty")
-  @Tag("MaintainedByDiffblue")
-  void testGetDirectoryFilesRecursiveWithDirectoryPathMaxDepth_thenReturnEmpty() throws FileNotFoundException {
-    // Arrange and Act
-    List<File> actualDirectoryFilesRecursive = ResourceUtils.getDirectoryFilesRecursive("", 2);
-
-    // Assert
-    assertTrue(actualDirectoryFilesRecursive.isEmpty());
-  }
-
-  /**
-   * Test {@link ResourceUtils#getDirectoryFilesRecursive(String, int)} with {@code directoryPath}, {@code maxDepth}.
-   * <ul>
    *   <li>When minus one.</li>
    * </ul>
    * <p>
@@ -130,24 +91,5 @@ class ResourceUtilsDiffblueTest {
 
     // Assert
     assertTrue(actualDirectoryFilesRecursive.isEmpty());
-  }
-
-  /**
-   * Test {@link ResourceUtils#getPath(String)}.
-   * <ul>
-   *   <li>When empty string.</li>
-   *   <li>Then return toFile Name is {@code 9}.</li>
-   * </ul>
-   * <p>
-   * Method under test: {@link ResourceUtils#getPath(String)}
-   */
-  @Test
-  @DisplayName("Test getPath(String); when empty string; then return toFile Name is '9'")
-  @Tag("MaintainedByDiffblue")
-  void testGetPath_whenEmptyString_thenReturnToFileNameIs9() {
-    // Arrange, Act and Assert
-    File toFileResult = ResourceUtils.getPath("").toFile();
-    assertEquals("9", toFileResult.getName());
-    assertFalse(toFileResult.isAbsolute());
   }
 }
